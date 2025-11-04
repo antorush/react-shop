@@ -38,6 +38,19 @@ import ps5 from "../../images/flash_sales/ps5.png";
 import speakers from "../../images/flash_sales/speakers.png";
 import woman from "../../images/flash_sales/woman.png";
 import perfum from "../../images/flash_sales/perfume.png";
+import deliver from "../../images/icons/icondelivery.svg";
+import headphone from "../../images/icons/headphones.svg";
+import guard from "../../images/icons/guard.svg"
+import womans from "../../images/about/twoGirls.png";
+import feature1 from "../../images/icons/huina.svg";
+import feature2 from "../../images/icons/DollarIcon.svg";
+import feature3 from "../../images/icons/ShoppingIcon.svg";
+import feature4 from "../../images/icons/moneyIcon.svg";
+import man1 from "../../images/about/man1.png";
+import woman1 from "../../images/about/woman1.png";
+import man2 from "../../images/about/man2.png";
+
+
 
 
 export type THeader = {
@@ -46,8 +59,175 @@ export type THeader = {
     path: string,
 }
 
+export type TSupprot={
+    id:string | number;
+    icon:string;
+    title:string;
+    description:string;
+}
+
+export type TAbout={
+    title:string,
+    description:string[],
+    img:string,
+}
+
+export type TAboutFeatures={
+    id:string | number,
+    icon:string,
+    name:string,
+    text:string,
+}
+
+export type AboustSlide={
+    id:number | string;
+    img:string;
+    name:string;
+    describe:string;
+    socials:Tsocials[];
+}
+
+export const AboutSlide:AboustSlide[]=[{
+    id:uuidv4(),
+    img:man1,
+    name:'Tom Cruise',
+    describe:'Founder & Chairman',
+    socials:[{
+        id:uuidv4(),
+        icon:twitter,
+        path:'https://twitter.com/',
+    },{
+        id:uuidv4(),
+        icon:instagram,
+        path:'https://www.instagram.com/',
+    },{
+        id:uuidv4(),
+        icon:In,
+        path:'/',
+    },]
+},{
+    id:uuidv4(),
+    img:man2,
+    name:'Tom Hardey',
+    describe:'Founder & Chairman',
+    socials:[{
+        id:uuidv4(),
+        icon:twitter,
+        path:'https://twitter.com/',
+    },{
+        id:uuidv4(),
+        icon:instagram,
+        path:'https://www.instagram.com/',
+    },{
+        id:uuidv4(),
+        icon:In,
+        path:'/',
+    },]
+},{
+    id:uuidv4(),
+    img:woman1,
+    name:'Anna Clain',
+    describe:'Founder & Chairman',
+    socials:[{
+        id:uuidv4(),
+        icon:twitter,
+        path:'https://twitter.com/',
+    },{
+        id:uuidv4(),
+        icon:instagram,
+        path:'https://www.instagram.com/',
+    },{
+        id:uuidv4(),
+        icon:In,
+        path:'/',
+    },]
+},{
+    id:uuidv4(),
+    img:man2,
+    name:'Will Smith',
+    describe:'Product Designer',
+    socials:[{
+        id:uuidv4(),
+        icon:twitter,
+        path:'https://twitter.com/',
+    },{
+        id:uuidv4(),
+        icon:instagram,
+        path:'https://www.instagram.com/',
+    },{
+        id:uuidv4(),
+        icon:In,
+        path:'/',
+    },]
+},{
+    id:uuidv4(),
+    img:woman1,
+    name:'Emma Watson',
+    describe:'Managing Director',
+    socials:[{
+        id:uuidv4(),
+        icon:twitter,
+        path:'https://twitter.com/',
+    },{
+        id:uuidv4(),
+        icon:instagram,
+        path:'https://www.instagram.com/',
+    },{
+        id:uuidv4(),
+        icon:In,
+        path:'/',
+    },]
+},]
+
+export const AboutFeaturesContent:TAboutFeatures[]=[{
+    id:uuidv4(),
+    icon:feature1,
+    name:'10.5k',
+    text:'Sallers active our site',
+},{
+    id:uuidv4(),
+    icon:feature2,
+    name:'33k',
+    text:'Mopnthly Produduct Sale',
+},{
+    id:uuidv4(),
+    icon:feature3,
+    name:'45.5k',
+    text:'Customer active in our site',
+},{
+    id:uuidv4(),
+    icon:feature4,
+    name:'25k',
+    text:'Anual gross sale in our site',
+},]
+
+export const AboutContent:TAbout={
+    title:'Our Story',
+    description:['Launced in 2015, Exclusive is South Asia’s premier online shopping makterplace with an active presense in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sallers and 300 brands and serves 3 millioons customers across the region. ', 'Exclusive has more than 1 Million products to offer, growing at a very fast. Exclusive offers a diverse assotment in categories ranging  from consumer.'],
+    img:womans,
+}
+
+export const SupportList:TSupprot[]=[{
+    id:uuidv4(),
+    icon:deliver,
+    title:'FREE AND FAST DELIVERY',
+    description:'Free delivery for all orders over $140'
+},{
+    id:uuidv4(),
+    icon:headphone,
+    title:'24/7 CUSTOMER SERVICE',
+    description:'Friendly 24/7 customer support'
+},{
+    id:uuidv4(),
+    icon:guard,
+    title:'MONEY BACK GUARANTEE',
+    description:'We reurn money within 30 dayss'
+},]
+
+
 type TAddData= {
-    id: number,
+    id: number | string,
+    isFixed?: boolean,
     icon: string
 }
 
@@ -172,10 +352,10 @@ export const slides: TSlide[] = [{
 
 
 export const HeaderOptions: TAddData[] = [{
-    id: Date.now()*Math.random(),
+    id: uuidv4(),
     icon: wishlist,
 },{
-    id: Date.now()*Math.random(),
+    id:uuidv4(),
     icon: cart,
 }]
 

@@ -7,17 +7,18 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { useSwiperNavigation } from "./hook/useSwiperNavigation";
-import { CustomNavigation } from "./components/CustomNavigation";
+import type { AboustSlide } from "../../data/data";
 import type { TOptionProduct, TSlide } from "../../data/data";
 import HeroSlide from "./components/SwiperSlide";
 import FLashSalesItem from "../../components/Flash Sales/FlashSalesItem";
 import type { TBrowseCategory } from "../../data/data";
 import BrowseItem from "../../components/Browse Category/BrowseItem";
+import AboutSlide from "./components/AboutSlide";
 
 // Типы для пропсов
 
 export interface ReactSwiperProps {
-  slides: TSlide[] | TOptionProduct[] | TBrowseCategory[];
+  slides: TSlide[] | TOptionProduct[] | TBrowseCategory[] | AboustSlide[];
   autoplay?: boolean | { delay: number; disableOnInteraction: boolean };
   slidesPerView?: number;
   navigation?: boolean;
@@ -26,7 +27,7 @@ export interface ReactSwiperProps {
   withThumbs?: boolean;
   thumbsSwiper?: unknown;
   navigationPosition?: "top" | "bottom" | "side";
-  sliderType: "product" | "hero" | "browse";
+  sliderType: "product" | "hero" | "browse" | "aboutSlide";
   pagination?:
     | boolean
     | {
@@ -82,6 +83,8 @@ const ReactSwiper: React.FC<ReactSwiperProps> = ({
             ? "w-[1000px] h-[344px]"
             : sliderType == "product"
             ? "w-[100%] h-[350px]"
+            : sliderType == "aboutSlide"
+            ? "w-full h-[564px]"
             : "w-[100%] h-[150px]"
         }`}
         autoplay={autoplay}
@@ -110,6 +113,10 @@ const ReactSwiper: React.FC<ReactSwiperProps> = ({
           ) : sliderType === "product" ? (
             <SwiperSlide>
               <FLashSalesItem product={slide} isSale={true} />
+            </SwiperSlide>
+          ) : sliderType === "aboutSlide" ? (
+            <SwiperSlide>
+              <AboutSlide slide={slide} />
             </SwiperSlide>
           ) : (
             <SwiperSlide>

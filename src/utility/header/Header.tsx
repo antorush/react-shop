@@ -4,14 +4,53 @@ import Container from "../Container";
 import search from "../../../images/icons/search.svg";
 import { HeaderOptions } from "../../data/data";
 import type { THeader } from "../../data/data";
+import { useEffect, useState, useRef } from "react";
 
 interface IHeader {
   NavBarItems: THeader[];
 }
 
 const Header: React.FC<IHeader> = ({ NavBarItems }) => {
+  const [isFix, setIsFix] = useState<boolean>(false);
+  const HeaderRef = useRef<HTMLHeadElement>(null);
+
+  const headerStyles = [
+    "fixed",
+    "top-0",
+    "left-0",
+    "z-50",
+    "w-full",
+    "bg-black/50",
+    "backdrop-blur-[10px]",
+    "text-white",
+    "transition-all",
+    "duration-300",
+    "ease-in-out",
+  ];
+
+  useEffect(() => {
+    const scrollWindow = () => {
+      if (window.scrollY > HeaderRef.current?.clientHeight) {
+        setIsFix(true);
+        HeaderRef.current?.classList.add(...headerStyles);
+      } else {
+        setIsFix(false);
+        HeaderRef.current?.classList.remove(...headerStyles);
+      }
+    };
+
+    window.addEventListener("scroll", scrollWindow);
+
+    return () => {
+      window.removeEventListener("scroll", scrollWindow);
+    };
+  }, [isFix]);
+
   return (
-    <header className="block relative pb-4 border-b-[1px] border-alterCol/20">
+    <header
+      ref={HeaderRef}
+      className="block pb-4 border-b-[1px] border-alterCol/20 transition-all duration-200 ease-in-out"
+    >
       <div className="bg-black relative w-full h-auto py-3 mb-10 text-primaryCol ">
         <Container isFlexCenter={true} isRow={true}>
           <div className="flex justify-between items-center grow-2">
@@ -41,7 +80,7 @@ const Header: React.FC<IHeader> = ({ NavBarItems }) => {
                 key={item.id}
                 className={({ isActive }) =>
                   isActive
-                    ? `font-bold relative text-header-16px after:absolute after:w-full after:h-[1px] after:bg-alterCol/30 after:bottom-[0px] after:left-0 after:opacity-0 after:transition-all after:duration-300 after:ease-in-out hover:after:opacity-100`
+                    ? `font-bold relative text-header-16px after:absolute after:w-full after:h-[1px] after:bg-alterCol/30 after:bottom-[0px] after:left-0 after:opacity-1000 after:transition-all after:duration-300 after:ease-in-out`
                     : `font-regular relative text-header-16px after:absolute after:w-full after:h-[1px] after:bg-alterCol/30 after:bottom-[0px] after:left-0 after:opacity-0 after:transition-all after:duration-300 after:ease-in-out hover:after:opacity-100`
                 }
               >
@@ -61,7 +100,7 @@ const Header: React.FC<IHeader> = ({ NavBarItems }) => {
             </div>
           </div>
           <ul className="flex justify-center items-center gap-4">
-            {HeaderOptions.map((item) => (
+            {HeaderOptions.map((item, index) => (
               <button type="button" key={item.id}>
                 <img src={item.icon} alt="" />
               </button>

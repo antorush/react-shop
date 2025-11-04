@@ -26,8 +26,10 @@ img{
   --font-Poppins:"Poppins", sans-serif;
   --font-Inter:"Inter", sans-serif;
   --text-Header-16px: 16px;
+  --text-h3Size:20px;
   --text-h2Size:36px;
   --text-h1Size:48px;
+  --text-aboutTitleSize:54px;
 
 }
 

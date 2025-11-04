@@ -7,7 +7,8 @@ import BrowseCategory from "../../components/Browse Category/BrowseCategory";
 import BestSell from "../../components/Best Selling/BestSell";
 import ExploreProducts from "../../components/Explore Products/ExploreProducts";
 import NewArrival from "../../components/NewArrival/NewArrival";
-import { NewArrivalList } from "../../data/data";
+import { NewArrivalList, SupportList } from "../../data/data";
+
 
 interface HomeProps {}
 
@@ -19,7 +20,7 @@ const Home: React.FC<HomeProps> = () => {
       <BrowseCategory CategoryList={BrowseCategoryData} />
       <BestSell data={FLashSales} />
       <ExploreProducts exploreProducts={FLashSales} />
-      <NewArrival arriaval={NewArrivalList} />
+      <NewArrival arriaval={NewArrivalList} supports={SupportList} />
     </Container>
   );
 };
